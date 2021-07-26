@@ -1,0 +1,15 @@
+query{
+  f1:getOneFriend(id:"60fe7954fe86262198de723f"){
+    ...friendFragment
+  }
+  f2:getOneFriend(id:"60fe7965fe86262198de7243"){
+    ...friendFragment
+  }
+}
+
+fragment friendFragment on Friend{
+  firstName
+  lastName
+  age
+  gender
+}
