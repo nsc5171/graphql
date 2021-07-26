@@ -1,4 +1,5 @@
 import { makeExecutableSchema } from 'graphql-tools'
+import { resolvers } from './resolvers'
 
 const typeDefs = `
     type Friend{
@@ -6,9 +7,17 @@ const typeDefs = `
         firstName: String
         lastName: String
         gender: Gender
+        language: String
         age: Int
         email: String
         contacts: [Contact]
+    }
+
+    type Alien {
+        id: ID
+        firstName: String
+        lastName: String
+        planet: String
     }
 
     type Contact {
@@ -23,7 +32,8 @@ const typeDefs = `
     }
 
     type Query {
-        getFriend(id: ID): Friend
+        getOneFriend(id: ID): Friend
+        getAliens: [Alien]
     }
 
     input FriendInput{
@@ -31,6 +41,7 @@ const typeDefs = `
         firstName: String
         lastName: String
         gender: Gender
+        language: String
         age: Int
         email: String
         contacts: [ContactInput]
@@ -43,6 +54,8 @@ const typeDefs = `
 
     type Mutation {
         createFriend(input: FriendInput): Friend
+        updateFriend(input: FriendInput): Friend
+        deleteFriend(id: ID!): String
     }
 `;
 
